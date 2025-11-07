@@ -1,3 +1,5 @@
+"use client"
+
 import { StackProvider, StackTheme } from "@stackframe/stack";
 import { stackServerApp } from "./stack";
 import "@/app/styles/globals.css";
