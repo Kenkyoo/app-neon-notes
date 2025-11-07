@@ -15,10 +15,12 @@ export function Header({ children }: { children?: ReactNode }) {
       <Flex gap="4" align="center" justify="space-between">
         <Heading> App Notes </Heading>
         {user ? (
+          <>
             <Heading> Hello {user.primaryEmail}</Heading>
             <Link href={app.urls.signOut}>
               <Button>Sign Out</Button>
             </Link>
+          </>
         ) : (
           <Stack direction="row" gap="3">
             <Link href={app.urls.signIn}>
