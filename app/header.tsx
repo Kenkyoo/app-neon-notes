@@ -10,16 +10,17 @@ export function Header({ children }: { children?: ReactNode }) {
   const app = useStackApp();
 
   return (
-    <Box background="teal.600" width="100%" padding="4" color="white">
+    <Box background="teal.600" width="100%" color="white">
       <Heading> App Notes </Heading>
       {user ? (
         <Flex gap="4" justify="center">
-          <div>{children}</div>
           <Heading> Hello {user.primaryEmail} </Heading>
-          <Link href={app.urls.signOut}>Sign Out</Link>
+          <Link href={app.urls.signOut}>
+            <Button>Sign Out</Button>
+          </Link>
         </Flex>
       ) : (
-        <Stack direction="row">
+        <Stack direction="row" gap="3">
           <Link href={app.urls.signIn}>
             <Button>Sign in</Button>
           </Link>{" "}
@@ -29,6 +30,7 @@ export function Header({ children }: { children?: ReactNode }) {
           </Link>
         </Stack>
       )}
+      <div>{children}</div>
     </Box>
   );
 }

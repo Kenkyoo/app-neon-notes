@@ -24,7 +24,8 @@ export async function TodoList() {
   const pendingTodos = todos.filter((todo) => !todo.isComplete).length;
 
   return (
-    <Container fluid>
+    <Container fluid px="4">
+      <Flex gap="4" direction="column">
       <Heading>
         {pendingTodos} todo{pendingTodos !== 1 ? "s" : ""} remaining
       </Heading>
@@ -34,7 +35,7 @@ export async function TodoList() {
             <Card.Root width="320px" key={todo.id}>
               <Card.Body gap="2">
                 {todo.owner?.email ? (
-                  <Card.Title mt="2"> Note </Card.Title>
+                  <Card.Title mt="2"> Note</Card.Title>
                 ) : null}
                 <Card.Description>{todo.task}</Card.Description>
               </Card.Body>
@@ -61,6 +62,7 @@ export async function TodoList() {
       ) : (
         <div>You don&apos;t have any todos!</div>
       )}
+    </Flex>
     </Container>
   );
 }

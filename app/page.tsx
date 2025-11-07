@@ -3,6 +3,7 @@ import { Header } from "app/header";
 import { TodoList } from "app/todo-list";
 import {
   Button,
+  Container,
   CloseButton,
   Drawer,
   Portal,
@@ -22,7 +23,7 @@ export default async function Home() {
         <Drawer.Root>
           <Header>
             <Drawer.Trigger asChild>
-              <Button variant="outline" size="sm">
+              <Button size="sm">
                 Sidebar
               </Button>
             </Drawer.Trigger>
@@ -35,9 +36,10 @@ export default async function Home() {
                   <Drawer.Title>Sidebar</Drawer.Title>
                 </Drawer.Header>
                 <Drawer.Body>
-                  <Stack>
+                  <Stack gap="5">
                     <p className="mb-10">{user.primaryEmail}</p>
                     <AddTodoForm />
+                    <UsersStats />
                   </Stack>
                 </Drawer.Body>
                 <Drawer.Footer>
@@ -51,11 +53,7 @@ export default async function Home() {
             </Drawer.Positioner>
           </Portal>
         </Drawer.Root>
-
-        <Flex gap="4" direction="column">
-          <TodoList />
-          <UsersStats />
-        </Flex>
+        <TodoList />
       </>
     );
   }
