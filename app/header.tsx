@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useStackApp, useUser } from "@stackframe/stack";
-import { Box, Heading, Button } from "@chakra-ui/react";
+import { Box, Heading, Button, Flex, Stack } from "@chakra-ui/react";
 import type { ReactNode } from "react";
 
 export function Header({ children }: { children?: ReactNode }) {
@@ -10,29 +10,25 @@ export function Header({ children }: { children?: ReactNode }) {
   const app = useStackApp();
 
   return (
-    <Box background="tomato" width="100%" padding="4" color="white">
-      <div>
-        <div>
-          <Heading> App Notes </Heading>
-        </div>
-        {user ? (
-          <div className="flex justify-between items-center gap-4">
-            <div>{children}</div>
-            <Heading> Hello {user.primaryEmail} </Heading>
-            <Link href={app.urls.signOut}>Sign Out</Link>
-          </div>
-        ) : (
-          <div>
-            <Link href={app.urls.signIn}>
-              <Button>Sign in</Button>
-            </Link>{" "}
-            |
-            <Link href={app.urls.signUp}>
-              <Button>Sign Up</Button>
-            </Link>
-          </div>
-        )}
-      </div>
+    <Box background="teal.600" width="100%" padding="4" color="white">
+      <Heading> App Notes </Heading>
+      {user ? (
+        <Flex gap="4" justify="center">
+          <div>{children}</div>
+          <Heading> Hello {user.primaryEmail} </Heading>
+          <Link href={app.urls.signOut}>Sign Out</Link>
+        </Flex>
+      ) : (
+        <Stack direction="row">
+          <Link href={app.urls.signIn}>
+            <Button>Sign in</Button>
+          </Link>{" "}
+          |
+          <Link href={app.urls.signUp}>
+            <Button>Sign Up</Button>
+          </Link>
+        </Stack>
+      )}
     </Box>
   );
 }

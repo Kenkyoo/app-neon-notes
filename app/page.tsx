@@ -1,14 +1,21 @@
 import { AddTodoForm } from "app/add-todo";
 import { Header } from "app/header";
 import { TodoList } from "app/todo-list";
-import { Button, CloseButton, Drawer, Portal } from "@chakra-ui/react";
+import {
+  Button,
+  CloseButton,
+  Drawer,
+  Portal,
+  Flex,
+  Stack,
+} from "@chakra-ui/react";
 import { UsersStats } from "app/users-stats";
 import { stackServerApp } from "app/stack";
 
 export default async function Home() {
   const user = await stackServerApp.getUser();
   let content = null;
-  console.log(user);
+
   if (user) {
     content = (
       <>
@@ -16,7 +23,7 @@ export default async function Home() {
           <Header>
             <Drawer.Trigger asChild>
               <Button variant="outline" size="sm">
-                Open Drawer
+                Sidebar
               </Button>
             </Drawer.Trigger>
           </Header>
@@ -28,8 +35,10 @@ export default async function Home() {
                   <Drawer.Title>Sidebar</Drawer.Title>
                 </Drawer.Header>
                 <Drawer.Body>
-                  <p className="mb-10">{user.primaryEmail}</p>
-                  <AddTodoForm />
+                  <Stack>
+                    <p className="mb-10">{user.primaryEmail}</p>
+                    <AddTodoForm />
+                  </Stack>
                 </Drawer.Body>
                 <Drawer.Footer>
                   <Button variant="outline">Cancel</Button>
@@ -43,18 +52,13 @@ export default async function Home() {
           </Portal>
         </Drawer.Root>
 
-        <div className="flex flex-col justify-center items-center gap-8">
+        <Flex gap="4" direction="column">
           <TodoList />
           <UsersStats />
-        </div>
+        </Flex>
       </>
     );
   }
 
-  return (
-    <>
-      <Header />
-      {content}
-    </>
-  );
+  return <>{content}</>;
 }
