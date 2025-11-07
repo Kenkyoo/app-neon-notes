@@ -56,7 +56,7 @@ export default async function Home() {
           </Portal>
         </Drawer.Root>
         <TodoList />
-      <Box position="relative" h="60px" bg="bg.muted" borderRadius="md">
+      <Box position="absolute" bottom="0" h="60px" bg="bg.muted" borderRadius="md">
       <AbsoluteCenter>
         <Box bg="bg.emphasized" px="4" py="2" borderRadius="md" color="fg">
           Dev by Kenkyo
