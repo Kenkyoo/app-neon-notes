@@ -37,7 +37,7 @@ export async function UsersStats() {
   return (
     <>
       {stats.map((user) => (
-        <Card.Root width="320px" key={user.email}>
+        <Card.Root maxW="sm" key={user.email}>
           <Card.Body gap="2">
             <Avatar.Root size="lg" shape="rounded">
               <Avatar.Image src="https://picsum.photos/200/300" />
@@ -50,8 +50,7 @@ export async function UsersStats() {
             </Card.Description>
           </Card.Body>
           <Card.Footer justifyContent="flex-end">
-            <Button variant="outline">{user.total}</Button>
-            <Button>Join</Button>
+            <Button variant="outline">Notes: {user.total}</Button>
           </Card.Footer>
         </Card.Root>
       ))}
