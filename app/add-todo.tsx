@@ -1,33 +1,8 @@
 "use client";
 
+import { Button, Field, Stack, Textarea, Card } from "@chakra-ui/react";
 import { insertTodo } from "app/actions";
-import { CSSProperties, useRef } from "react";
-
-const styles = {
-  form: {
-    display: "flex",
-    marginBottom: "20px",
-    gap: "10px",
-  },
-  input: {
-    flex: 1,
-    padding: "10px",
-    fontSize: "16px",
-    border: "1px solid #e0e0e0",
-    borderRadius: "4px",
-    outline: "none",
-  },
-  button: {
-    padding: "10px 20px",
-    fontSize: "16px",
-    backgroundColor: "#4CAF50",
-    color: "white",
-    border: "none",
-    borderRadius: "4px",
-    cursor: "pointer",
-    transition: "background-color 0.2s ease",
-  },
-} satisfies Record<string, CSSProperties>;
+import { useRef } from "react";
 
 export function AddTodoForm() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -48,16 +23,28 @@ export function AddTodoForm() {
   };
 
   return (
-    <form ref={formRef} action={onSubmit} style={styles.form}>
-      <input
-        required
-        name="newTodo"
-        placeholder="Enter a new todo"
-        style={styles.input}
-      />
-      <button type="submit" style={styles.button}>
-        Add Todo
-      </button>
+    <Card.Root maxW="sm">
+      <form ref={formRef} action={onSubmit}>
+      <Card.Header>
+        <Card.Title>New note</Card.Title>
+        <Card.Description>
+          Take notes, organize tasks, and stay productive.
+        </Card.Description>
+      </Card.Header>
+      <Card.Body>
+          <Stack gap="4" w="full">
+            <Field.Root>
+              <Field.Label>New note</Field.Label>
+              <Textarea name="newTodo" placeholder="New note" />
+              <Field.HelperText>Take notes</Field.HelperText>
+              <Field.ErrorText>{}</Field.ErrorText>
+            </Field.Root>
+          </Stack>
+      </Card.Body>
+      <Card.Footer justifyContent="flex-end">
+        <Button type="submit">Create</Button>
+      </Card.Footer>
     </form>
+    </Card.Root>
   );
 }

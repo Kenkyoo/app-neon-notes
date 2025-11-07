@@ -1,6 +1,7 @@
 import { StackProvider, StackTheme } from "@stackframe/stack";
 import { stackServerApp } from "./stack";
 import "@/app/styles/globals.css";
+import { Provider } from "@/components/ui/provider";
 
 export default function RootLayout({
   children,
@@ -8,10 +9,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <body className={`min-h-screen flex flex-col antialiased`}>
+    <html suppressHydrationWarning>
+      <body>
         <StackProvider app={stackServerApp}>
-          <StackTheme>{children}</StackTheme>
+          <StackTheme>
+            <Provider>{children}</Provider>
+          </StackTheme>
         </StackProvider>
       </body>
     </html>
